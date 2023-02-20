@@ -2,7 +2,7 @@
 home: true
 # heroImage: /hero.png
 heroText: DateDreamer
-tagline: An easy to use lightweight javascript calendar plugin.
+tagline: An easy to use lightweight javascript calendar library.
 actionText: Get Started →
 actionLink: /introduction/
 features:
