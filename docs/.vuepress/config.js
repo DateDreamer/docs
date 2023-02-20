@@ -5,7 +5,13 @@ module.exports = {
     base: "/docs/",
     plugins: ['@vuepress/active-header-links'],
     themeConfig: {
-      sidebar: 'auto',
+      displayAllHeaders: true,
+      sidebar: [
+        '/',
+        '/Introduction/',
+        '/Getting Started/',
+        '/Options/'
+      ],
       nav: [
         {text: "Github", link: "https://github.com/DateDreamer/datedreamer"}
       ],

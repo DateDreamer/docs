@@ -4,13 +4,13 @@ home: true
 heroText: DateDreamer
 tagline: An easy to use lightweight javascript calendar plugin.
 actionText: Get Started →
-actionLink: /guide/
+actionLink: /introduction/
 features:
 - title: Lightweight
-  details: Minimal setup with markdown-centered project structure helps you focus on writing.
+  details: A very small lightweight javascript package with very few dependencies.
 - title: Easy To Override
-  details: Enjoy the dev experience of Vue + webpack, use Vue components in markdown, and develop custom themes with Vue.
+  details: Easy to override by injecting your own CSS styles into the shadow DOM.
 - title: Accessible
-  details: VuePress generates pre-rendered static HTML for each page, and runs as an SPA once a page is loaded.
+  details: Every update is tested with Deque to make sure we meet WCAG AA standards.
 footer: GPL-3.0 Licensed | Copyright © 2023-present DateDreamer
 ---

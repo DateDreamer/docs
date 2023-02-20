@@ -1,6 +1,10 @@
 <script>
-import {calendarToggle} from "datedreamer"
+import * as datedreamer from "datedreamer"
 export default {
+  props: {
+    type: String,
+    theme: {type: String, default:"lite-purple"}
+  },
   data() {
     return {
       greeting: 'Hello World!'
@@ -8,8 +12,14 @@ export default {
   },
   mounted() {
     if(window){
-      console.log(window,this.$refs.calendar)
-      new calendarToggle({element: this.$refs.calendar, theme: "lite-purple", format: "MM/DD/YYYY"})
+      if(this.$props.type == "regular"){
+        new datedreamer.calendar({element: this.$refs.calendar, theme: this.$props.theme, format: "MM/DD/YYYY"})
+
+      }
+
+      if(this.$props.type == "toggle") {
+        new datedreamer.calendarToggle({element: this.$refs.calendar, theme: this.$props.theme, format: "MM/DD/YYYY"})
+      }
     }
   }
 }
