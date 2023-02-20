@@ -3,7 +3,7 @@ module.exports = {
     description: 'An easy to use lightweight javascript calendar library.',
     dest: "./dist",
     base: "/docs/",
-    plugins: ['@vuepress/active-header-links'],
+    plugins: ['@vuepress/active-header-links', '@vuepress/back-to-top','@vuepress/active-header-links'],
     themeConfig: {
       displayAllHeaders: true,
       sidebar: [
