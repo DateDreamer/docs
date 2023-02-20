@@ -2,6 +2,7 @@ module.exports = {
     title: "DateDreamer Docs",
     description: 'An easy to use lightweight javascript calendar plugin.',
     dest: "./dist",
+    base: "/docs/",
     plugins: ['@vuepress/active-header-links'],
     themeConfig: {
       sidebar: 'auto',
