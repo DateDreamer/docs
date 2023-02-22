@@ -16,7 +16,8 @@ module.exports = {
         {text: "Github", link: "https://github.com/DateDreamer/datedreamer"}
       ],
       globalLayout: {
-        Calendar: '@/components/Calendar.vue'
+        Calendar: '@/components/Calendar.vue',
+        Range: '@/components/Range.vue'
       }
     }
   }

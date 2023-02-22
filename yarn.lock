@@ -3044,10 +3044,10 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-datedreamer@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/datedreamer/-/datedreamer-0.1.0.tgz#1612fa07c005e76aa6218cb9537a5a20d7f7f403"
-  integrity sha512-rQSHB7GpsRT7/mrKibpDZJZ/EQAAZe8PM/U7GYOP8pBMyUSo2WMA3A82kS9BZiiyVqG7f2j+J0/DwPAG+mPdHw==
+datedreamer@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/datedreamer/-/datedreamer-0.2.0.tgz#f914761e20e33930bfe1cfcc6fffb6622ef1f3d5"
+  integrity sha512-ZsMCauyfU1MjlzTuZH5mxOGKbYc8fvpbkboqCql+hhBj7cj+btp7BZXYjvuLGtWIHA7DsIz1UfUna9HlZIiCNQ==
   dependencies:
     dayjs "^1.11.7"
 

@@ -9,12 +9,9 @@ The need for a simple yet very extensible calendar came after testing other cale
 - ✅ Themes
 - ✅ Standalone Calendar
 - ✅ Input Toggable Calendar
+- ✅ Date Range Calendar
 - ✅ Events
 - ✅ WCAG 2.1 AA Compliant
-
-
-#### Coming Soon
-- ☑️ Date Range Calendar
 
 ## Calendar Examples
 
@@ -31,4 +28,11 @@ The need for a simple yet very extensible calendar came after testing other cale
 <br />
 <ClientOnly>
 <Calendar type="toggle" />
+</ClientOnly>
+
+### Calendar Range
+
+<br />
+<ClientOnly>
+<Range />
 </ClientOnly>

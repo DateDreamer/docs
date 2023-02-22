@@ -46,6 +46,7 @@ The element property can be either a CSS selector or a DOM element object.
 ```javascript
 new datedreamer.calendar({
     element: "#my-calendar", // Required
+    theme: "lite-purple",
     // ...other options
 })
 ```
@@ -58,6 +59,20 @@ new datedreamer.calendar({
 ```javascript
 new datedreamer.calendarToggle({
     element: "#my-calendar", // Required
+    theme: "lite-purple",
+    // ...other options
+})
+```
+
+#### Calendar Range
+```html
+<div id="my-calendar"></div>
+```
+
+```javascript
+new datedreamer.range({
+    element: "#my-calendar", // Required
+    theme: "lite-purple",
     // ...other options
 })
 ```

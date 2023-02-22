@@ -26,5 +26,5 @@ export default {
 </script>
 
 <template>
-  <div ref="calendar" id="calendar"></div>
+  <div ref="calendar" id="calendar" style="position: relative; z-index: 20"></div>
 </template>
