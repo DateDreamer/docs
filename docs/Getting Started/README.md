@@ -4,6 +4,11 @@ There are several ways that you can install and use DateDreamer into your projec
 
 ## Install
 
+#### Installing with CDNJS
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datedreamer/0.2.1/datedreamer.min.js"></script>
+```
+
 #### Installing with NPM
 ```bash
 npm install datedreamer
