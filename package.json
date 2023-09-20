@@ -13,6 +13,6 @@
     "vuepress": "^1.9.8"
   },
   "dependencies": {
-    "datedreamer": "^0.2.0"
+    "datedreamer": "^0.3.0"
   }
 }
