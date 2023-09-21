@@ -5,14 +5,16 @@
   "license": "MIT",
   "scripts": {
     "start": "vuepress dev docs",
-    "build": "vuepress build docs"
+    "build": "vuepress build docs",
+    "fix": "yarn-audit-fix"
   },
   "devDependencies": {
-    "@vuepress/plugin-active-header-links": "^1.9.8",
-    "@vuepress/plugin-back-to-top": "^1.9.8",
-    "vuepress": "^1.9.8"
+    "@vuepress/plugin-active-header-links": "^1.9.10",
+    "@vuepress/plugin-back-to-top": "^1.9.10",
+    "vuepress": "^1.9.10",
+    "yarn-audit-fix": "^10.0.1"
   },
   "dependencies": {
-    "datedreamer": "^0.3.0"
+    "datedreamer": "^0.3.1"
   }
 }
