@@ -9,12 +9,15 @@
     "fix": "yarn-audit-fix"
   },
   "devDependencies": {
-    "@vuepress/plugin-active-header-links": "^1.9.10",
-    "@vuepress/plugin-back-to-top": "^1.9.10",
-    "vuepress": "^1.9.10",
-    "yarn-audit-fix": "^10.0.1"
+    "@vuepress/bundler-vite": "^2.0.0-rc.24",
+    "@vuepress/plugin-active-header-links": "^2.0.0-rc.107",
+    "@vuepress/plugin-back-to-top": "^2.0.0-rc.110",
+    "@vuepress/theme-default": "^2.0.0-rc.110",
+    "sass-embedded": "^1.89.2",
+    "vuepress": "^2.0.0-rc.24",
+    "yarn-audit-fix": "^10.1.1"
   },
   "dependencies": {
-    "datedreamer": "^0.3.1"
+    "datedreamer": "^0.4.0"
   }
 }

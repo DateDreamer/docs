@@ -3,8 +3,10 @@ home: true
 # heroImage: /hero.png
 heroText: DateDreamer
 tagline: An easy to use lightweight javascript calendar library.
-actionText: Get Started →
-actionLink: /introduction/
+actions:
+  - text: Get Started →
+    link: /Introduction/
+    type: primary
 features:
 - title: Lightweight
   details: A very small lightweight javascript package with very few dependencies.

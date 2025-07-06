@@ -1,5 +1,4 @@
 <script>
-import * as datedreamer from "datedreamer"
 export default {
   props: {
   },
@@ -9,8 +8,12 @@ export default {
     }
   },
   mounted() {
-    if(window){
-        new datedreamer.range({element: this.$refs.range,theme: "lite-purple", format: "MM/DD/YYYY"})
+    if(typeof window !== 'undefined' && window.document){
+      import('datedreamer').then((datedreamer) => {
+        new datedreamer.range({element: this.$refs.range,theme: "lite-purple", format: "MM/DD/YYYY", darkModeAuto: true})
+      }).catch(err => {
+        console.error('Failed to load datedreamer:', err);
+      });
     }
   }
 }

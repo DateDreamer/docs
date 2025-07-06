@@ -1,5 +1,4 @@
 <script>
-import * as datedreamer from "datedreamer"
 export default {
   props: {
     type: String,
@@ -11,15 +10,18 @@ export default {
     }
   },
   mounted() {
-    if(window){
-      if(this.$props.type == "regular"){
-        new datedreamer.calendar({element: this.$refs.calendar, theme: this.$props.theme, format: "MM/DD/YYYY"})
+    if(typeof window !== 'undefined' && window.document){
+      import('datedreamer').then((datedreamer) => {
+        if(this.$props.type == "regular"){
+          new datedreamer.calendar({element: this.$refs.calendar, theme: this.$props.theme, format: "MM/DD/YYYY", darkModeAuto: true})
+        }
 
-      }
-
-      if(this.$props.type == "toggle") {
-        new datedreamer.calendarToggle({element: this.$refs.calendar, theme: this.$props.theme, format: "MM/DD/YYYY"})
-      }
+        if(this.$props.type == "toggle") {
+          new datedreamer.calendarToggle({element: this.$refs.calendar, theme: this.$props.theme, format: "MM/DD/YYYY", darkModeAuto: true})
+        }
+      }).catch(err => {
+        console.error('Failed to load datedreamer:', err);
+      });
     }
   }
 }
