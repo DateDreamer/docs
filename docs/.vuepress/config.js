@@ -14,6 +14,8 @@ export default defineUserConfig({
   }),
   
   theme: defaultTheme({
+    colorMode: 'auto',
+    colorModeSwitch: true,
     displayAllHeaders: true,
     sidebar: [
       {

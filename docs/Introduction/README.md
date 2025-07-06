@@ -18,11 +18,22 @@ DateDreamer addresses these issues by providing:
 ### Calendar
 The main calendar component that provides date selection functionality with full customization options.
 
+<ClientOnly>
+    <Calendar type="regular" />
+</ClientOnly>
+
 ### Calendar Toggle
 A calendar that shows/hides when an input is clicked, perfect for form inputs and date pickers.
+<ClientOnly>
+    <Calendar type="toggle" />
+</ClientOnly>
 
 ### Range Calendar
 A specialized calendar component for selecting date ranges with support for predefined ranges.
+
+<ClientOnly>
+    <Range />
+</ClientOnly>
 
 ## Features
 
@@ -39,29 +50,7 @@ A specialized calendar component for selecting date ranges with support for pred
 - ✅ **Browser Support**: Compatible with all modern browsers
 - ✅ **Lightweight**: Small bundle size with minimal dependencies
 
-## Calendar Examples
-
-### Calendar
-<br />
-<ClientOnly>
-<Calendar type="regular" />
-</ClientOnly>
-
 <br/>
-
-### Calendar Toggle
-
-<br />
-<ClientOnly>
-<Calendar type="toggle" />
-</ClientOnly>
-
-### Calendar Range
-
-<br />
-<ClientOnly>
-<Range />
-</ClientOnly>
 
 ## Browser Support
 
