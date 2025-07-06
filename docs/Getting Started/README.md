@@ -172,7 +172,15 @@ const myCalendar = new calendar({
 
 Now that you have DateDreamer installed and running, you can:
 
-1. Explore the [Options](/docs/Options/) page to see all available configuration options
+1. Explore the [Options](/Options/) page to see all available configuration options
 2. Customize the appearance with themes and custom styling
 3. Add event handlers for date changes and user interactions
 4. Implement advanced features like date ranges and predefined ranges
+
+## Need Help?
+
+If you encounter any issues during setup:
+
+- Check the [Troubleshooting](/Troubleshooting/) guide for common problems and solutions
+- Review the [Options](/Options/) page for configuration details
+- Visit our [GitHub repository](https://github.com/DateDreamer/datedreamer) for the latest updates and community support

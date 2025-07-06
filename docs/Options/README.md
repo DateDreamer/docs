@@ -444,3 +444,93 @@ All the above options are available for:
 - `calendarToggle` - Toggle calendar component (same options as calendar)
 - `range` - Range calendar component (includes predefinedRanges option)
 
+## Performance Tips
+
+### Optimizing Large Applications
+
+When using DateDreamer in large applications, consider these best practices:
+
+#### 1. Use Lazy Loading
+```javascript
+// Load DateDreamer only when needed
+const loadCalendar = async () => {
+    const { calendar } = await import('datedreamer');
+    return new calendar({
+        element: "#my-calendar",
+        theme: "lite-purple"
+    });
+};
+```
+
+#### 2. Minimize Style Injection
+```javascript
+// ❌ Avoid injecting large CSS strings repeatedly
+const heavyStyles = `/* hundreds of lines of CSS */`;
+
+// ✅ Better - use external CSS or smaller, targeted styles
+const myCalendar = new calendar({
+    element: "#my-calendar",
+    theme: "unstyled", // Start with unstyled
+    styles: `
+        .datedreamer__calendar {
+            font-family: inherit;
+        }
+    `
+});
+```
+
+#### 3. Event Handler Optimization
+```javascript
+// ❌ Avoid heavy operations in event handlers
+const myCalendar = new calendar({
+    element: "#my-calendar",
+    onChange: (event) => {
+        // Heavy DOM manipulation or API calls
+        updateEntirePageLayout();
+        fetchDataFromMultipleAPIs();
+    }
+});
+
+// ✅ Better - debounce or throttle expensive operations
+const myCalendar = new calendar({
+    element: "#my-calendar",
+    onChange: debounce((event) => {
+        handleDateChange(event.detail);
+    }, 300)
+});
+```
+
+#### 4. Memory Management
+```javascript
+// Clean up instances when components are unmounted
+const myCalendar = new calendar({
+    element: "#my-calendar",
+    theme: "lite-purple"
+});
+
+// Later, when removing the component
+if (myCalendar.destroy) {
+    myCalendar.destroy();
+}
+```
+
+### Bundle Size Optimization
+
+```javascript
+// ✅ Import only what you need
+import { calendar } from 'datedreamer';
+
+// ❌ Avoid importing everything
+import * as datedreamer from 'datedreamer';
+```
+
+## Best Practices
+
+1. **Initialize after DOM is ready**: Always ensure the target element exists
+2. **Use appropriate themes**: Start with `unstyled` for full customization
+3. **Handle errors gracefully**: Check for element existence before initialization
+4. **Optimize for your use case**: Use `calendar` for simple date selection, `range` for date ranges
+5. **Consider accessibility**: Test with screen readers and keyboard navigation
+
+For more detailed troubleshooting, see the [Troubleshooting](/Troubleshooting/) guide.
+

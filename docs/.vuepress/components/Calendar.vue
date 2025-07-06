@@ -7,8 +7,14 @@ export default {
   },
   data() {
     return {
-      isDarkMode: false
+      isDarkMode: false,
+      calendarInstance: null,
+      uniqueId: null
     }
+  },
+  created() {
+    // Generate unique ID for this component instance
+    this.uniqueId = `calendar-${Math.random().toString(36).substr(2, 9)}`
   },
   mounted() {
     // Detect initial VuePress dark mode state
@@ -28,35 +34,17 @@ export default {
       })
     }
     
-    if(typeof window !== 'undefined' && window.document){
-      import('datedreamer').then((datedreamer) => {
-        if(this.$props.type == "regular"){
-          new datedreamer.calendar({
-            element: this.$refs.calendar, 
-            theme: this.$props.theme, 
-            format: "MM/DD/YYYY", 
-            darkMode: this.isDarkMode
-          })
-        }
-
-        if(this.$props.type == "toggle") {
-          new datedreamer.calendarToggle({
-            element: this.$refs.calendar, 
-            theme: this.$props.theme, 
-            format: "MM/DD/YYYY", 
-            darkMode: this.isDarkMode
-          })
-        }
-      }).catch(err => {
-        console.error('Failed to load datedreamer:', err);
-      });
-    }
+    // Initialize calendar
+    this.initializeCalendar()
   },
   beforeUnmount() {
     // Clean up the mutation observer
     if (this.observer) {
       this.observer.disconnect()
     }
+    
+    // Clean up calendar instance
+    this.destroyCalendar()
   },
   methods: {
     detectVuePressColorMode() {
@@ -72,17 +60,15 @@ export default {
         }
       }
     },
-    reinitializeCalendar() {
-      // Clear the existing calendar
-      if (this.$refs.calendar) {
-        this.$refs.calendar.innerHTML = ''
+    initializeCalendar() {
+      if (this.calendarInstance || !this.$refs.calendar) {
+        return // Already initialized or ref not available
       }
       
-      // Re-create the calendar with the new dark mode setting
       if(typeof window !== 'undefined' && window.document){
         import('datedreamer').then((datedreamer) => {
           if(this.$props.type == "regular"){
-            new datedreamer.calendar({
+            this.calendarInstance = new datedreamer.calendar({
               element: this.$refs.calendar, 
               theme: this.$props.theme, 
               format: "MM/DD/YYYY", 
@@ -91,7 +77,7 @@ export default {
           }
 
           if(this.$props.type == "toggle") {
-            new datedreamer.calendarToggle({
+            this.calendarInstance = new datedreamer.calendarToggle({
               element: this.$refs.calendar, 
               theme: this.$props.theme, 
               format: "MM/DD/YYYY", 
@@ -102,11 +88,35 @@ export default {
           console.error('Failed to load datedreamer:', err);
         });
       }
+    },
+    destroyCalendar() {
+      if (this.calendarInstance) {
+        // Clean up the calendar instance if it has a destroy method
+        if (typeof this.calendarInstance.destroy === 'function') {
+          this.calendarInstance.destroy()
+        }
+        this.calendarInstance = null
+      }
+      
+      // Clear the calendar container
+      if (this.$refs.calendar) {
+        this.$refs.calendar.innerHTML = ''
+      }
+    },
+    reinitializeCalendar() {
+      // Only reinitialize if we already have an instance
+      if (this.calendarInstance) {
+        this.destroyCalendar()
+        // Use nextTick to ensure DOM is updated before reinitializing
+        this.$nextTick(() => {
+          this.initializeCalendar()
+        })
+      }
     }
   }
 }
 </script>
 
 <template>
-  <div ref="calendar" id="calendar" style="position: relative; z-index: 20"></div>
+  <div ref="calendar" :id="uniqueId" style="position: relative; z-index: 20"></div>
 </template>

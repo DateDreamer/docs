@@ -59,3 +59,39 @@ DateDreamer supports all modern browsers that support Web Components:
 - Firefox 63+
 - Safari 10.1+
 - Edge 79+
+
+## Frequently Asked Questions
+
+### Why choose DateDreamer over other calendar libraries?
+
+DateDreamer was built to address common pain points with existing calendar libraries:
+- **Lightweight**: No heavy dependencies or bloated code
+- **Customizable**: Easy to style and configure without fighting the library
+- **Modern**: Built with current web standards (Web Components, TypeScript)
+- **Accessible**: WCAG 2.1 AA compliant out of the box
+
+### Can I use DateDreamer with my framework?
+
+Yes! DateDreamer is built with Web Components, making it compatible with:
+- React
+- Vue
+- Angular
+- Svelte
+- Vanilla JavaScript
+- Any framework that supports Web Components
+
+### Is DateDreamer free to use?
+
+DateDreamer is open source and licensed under GPL-3.0. You can use it freely in your projects.
+
+### How do I customize the appearance?
+
+You have several options:
+1. Use the built-in themes (`unstyled`, `lite-purple`)
+2. Inject custom CSS through the `styles` option
+3. Override CSS custom properties for theme customization
+4. Start with `unstyled` theme and build your own styles
+
+### Does DateDreamer work with TypeScript?
+
+Yes! DateDreamer is written in TypeScript and includes full type definitions. You'll get autocomplete and type checking out of the box.

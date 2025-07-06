@@ -4,8 +4,14 @@ export default {
   },
   data() {
     return {
-      isDarkMode: false
+      isDarkMode: false,
+      rangeInstance: null,
+      uniqueId: null
     }
+  },
+  created() {
+    // Generate unique ID for this component instance
+    this.uniqueId = `range-${Math.random().toString(36).substr(2, 9)}`
   },
   mounted() {
     // Detect initial VuePress dark mode state
@@ -25,24 +31,17 @@ export default {
       })
     }
     
-    if(typeof window !== 'undefined' && window.document){
-      import('datedreamer').then((datedreamer) => {
-        new datedreamer.range({
-          element: this.$refs.range,
-          theme: "lite-purple", 
-          format: "MM/DD/YYYY", 
-          darkMode: this.isDarkMode
-        })
-      }).catch(err => {
-        console.error('Failed to load datedreamer:', err);
-      });
-    }
+    // Initialize range calendar
+    this.initializeRangeCalendar()
   },
   beforeUnmount() {
     // Clean up the mutation observer
     if (this.observer) {
       this.observer.disconnect()
     }
+    
+    // Clean up range calendar instance
+    this.destroyRangeCalendar()
   },
   methods: {
     detectVuePressColorMode() {
@@ -58,16 +57,14 @@ export default {
         }
       }
     },
-    reinitializeRangeCalendar() {
-      // Clear the existing calendar
-      if (this.$refs.range) {
-        this.$refs.range.innerHTML = ''
+    initializeRangeCalendar() {
+      if (this.rangeInstance || !this.$refs.range) {
+        return // Already initialized or ref not available
       }
       
-      // Re-create the range calendar with the new dark mode setting
       if(typeof window !== 'undefined' && window.document){
         import('datedreamer').then((datedreamer) => {
-          new datedreamer.range({
+          this.rangeInstance = new datedreamer.range({
             element: this.$refs.range,
             theme: "lite-purple", 
             format: "MM/DD/YYYY", 
@@ -77,11 +74,35 @@ export default {
           console.error('Failed to load datedreamer:', err);
         });
       }
+    },
+    destroyRangeCalendar() {
+      if (this.rangeInstance) {
+        // Clean up the range calendar instance if it has a destroy method
+        if (typeof this.rangeInstance.destroy === 'function') {
+          this.rangeInstance.destroy()
+        }
+        this.rangeInstance = null
+      }
+      
+      // Clear the range calendar container
+      if (this.$refs.range) {
+        this.$refs.range.innerHTML = ''
+      }
+    },
+    reinitializeRangeCalendar() {
+      // Only reinitialize if we already have an instance
+      if (this.rangeInstance) {
+        this.destroyRangeCalendar()
+        // Use nextTick to ensure DOM is updated before reinitializing
+        this.$nextTick(() => {
+          this.initializeRangeCalendar()
+        })
+      }
     }
   }
 }
 </script>
 
 <template>
-  <div ref="range" id="range"></div>
+  <div ref="range" :id="uniqueId"></div>
 </template>
