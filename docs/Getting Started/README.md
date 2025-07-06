@@ -16,7 +16,7 @@ yarn add datedreamer
 
 #### Installing with CDNJS
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/datedreamer/0.4.1/datedreamer.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datedreamer/0.4.2/datedreamer.min.js"></script>
 ```
 
 <!-- ::: warning
