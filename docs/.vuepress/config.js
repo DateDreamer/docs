@@ -1,8 +1,6 @@
 import { defineUserConfig } from 'vuepress'
 import { defaultTheme } from '@vuepress/theme-default'
 import { viteBundler } from '@vuepress/bundler-vite'
-import { activeHeaderLinksPlugin } from '@vuepress/plugin-active-header-links'
-import { backToTopPlugin } from '@vuepress/plugin-back-to-top'
 
 export default defineUserConfig({
   title: "DateDreamer Docs",
@@ -30,14 +28,6 @@ export default defineUserConfig({
       {text: "Github", link: "https://github.com/DateDreamer/datedreamer"}
     ],
   }),
-  
-  plugins: [
-    activeHeaderLinksPlugin({
-      headerLinkSelector: 'a.sidebar-item',
-      headerAnchorSelector: '.header-anchor',
-    }),
-    backToTopPlugin(),
-  ],
   
   alias: {
     '@': '/docs/.vuepress/components'

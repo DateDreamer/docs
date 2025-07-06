@@ -1,1 +1,0 @@
-export const siteData = JSON.parse("{\"base\":\"/docs/\",\"lang\":\"en-US\",\"title\":\"DateDreamer Docs\",\"description\":\"An easy to use lightweight javascript calendar library.\",\"head\":[],\"locales\":{}}")
