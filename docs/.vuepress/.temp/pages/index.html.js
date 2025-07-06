@@ -1,16 +1,3 @@
 import comp from "/Users/owner/Sites/docs/docs/.vuepress/.temp/pages/index.html.vue"
-const data = JSON.parse("{\"path\":\"/\",\"title\":\"\",\"lang\":\"en-US\",\"frontmatter\":{\"home\":true,\"heroText\":\"DateDreamer\",\"tagline\":\"An easy to use lightweight javascript calendar library.\",\"actions\":[{\"text\":\"Get Started →\",\"link\":\"/Introduction/\",\"type\":\"primary\"}],\"features\":[{\"title\":\"Lightweight\",\"details\":\"A very small lightweight javascript package with very few dependencies.\"},{\"title\":\"Easy To Override\",\"details\":\"Easy to override by injecting your own CSS styles into the shadow DOM.\"},{\"title\":\"Accessible\",\"details\":\"Every update is tested with Deque to make sure we meet WCAG AA standards.\"}],\"footer\":\"GPL-3.0 Licensed | Copyright © 2023-present DateDreamer\"},\"git\":{\"updatedTime\":1676866746000,\"contributors\":[{\"name\":\"Jorge Felico\",\"username\":\"\",\"email\":\"jorgefelico@gmail.com\",\"commits\":3}],\"changelog\":[{\"hash\":\"1fd1cfb0bfa8a569d11647ccebdb13a5045b4e34\",\"time\":1676866746000,\"email\":\"jorgefelico@gmail.com\",\"author\":\"Jorge Felico\",\"message\":\"Changed some wording around\"},{\"hash\":\"9e08713c1857b0b11c1d629cbfbb9b28ad680d9f\",\"time\":1676866166000,\"email\":\"jorgefelico@gmail.com\",\"author\":\"Jorge Felico\",\"message\":\"Added some docs\"},{\"hash\":\"3008d4cc3f6ad25182a8950ace52d072d71b545e\",\"time\":1676853267000,\"email\":\"jorgefelico@gmail.com\",\"author\":\"Jorge Felico\",\"message\":\"Initial commit\"}]},\"filePathRelative\":\"README.md\"}")
+const data = JSON.parse("{\"path\":\"/\",\"title\":\"\",\"lang\":\"en-US\",\"frontmatter\":{\"home\":true,\"heroText\":\"DateDreamer\",\"tagline\":\"An easy to use lightweight javascript calendar library.\",\"actions\":[{\"text\":\"Get Started →\",\"link\":\"/Introduction/\",\"type\":\"primary\"}],\"features\":[{\"title\":\"Lightweight\",\"details\":\"A very small lightweight javascript package with very few dependencies.\"},{\"title\":\"Easy To Override\",\"details\":\"Easy to override by injecting your own CSS styles into the shadow DOM.\"},{\"title\":\"Accessible\",\"details\":\"Every update is tested with Deque to make sure we meet WCAG AA standards.\"}],\"footer\":\"GPL-3.0 Licensed | Copyright © 2023-present DateDreamer\"},\"git\":{\"updatedTime\":1751786551000,\"contributors\":[{\"name\":\"Jorge Felico\",\"username\":\"\",\"email\":\"jorgefelico@gmail.com\",\"commits\":4}],\"changelog\":[{\"hash\":\"f8d55745faad4eb57714bca15066c59c3ee7d46f\",\"time\":1751786551000,\"email\":\"jorgefelico@gmail.com\",\"author\":\"Jorge Felico\",\"message\":\"Updated docs\"},{\"hash\":\"1fd1cfb0bfa8a569d11647ccebdb13a5045b4e34\",\"time\":1676866746000,\"email\":\"jorgefelico@gmail.com\",\"author\":\"Jorge Felico\",\"message\":\"Changed some wording around\"},{\"hash\":\"9e08713c1857b0b11c1d629cbfbb9b28ad680d9f\",\"time\":1676866166000,\"email\":\"jorgefelico@gmail.com\",\"author\":\"Jorge Felico\",\"message\":\"Added some docs\"},{\"hash\":\"3008d4cc3f6ad25182a8950ace52d072d71b545e\",\"time\":1676853267000,\"email\":\"jorgefelico@gmail.com\",\"author\":\"Jorge Felico\",\"message\":\"Initial commit\"}]},\"filePathRelative\":\"README.md\"}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}
