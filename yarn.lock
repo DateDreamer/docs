@@ -1191,10 +1191,10 @@ csstype@^3.1.3:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.3.tgz#d80ff294d114fb0e6ac500fbf85b60137d7eff81"
   integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==
 
-datedreamer@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/datedreamer/-/datedreamer-0.4.0.tgz#4b1fcfa13bd9146733424ccc543d0b83d9200d1c"
-  integrity sha512-vU3Z5vGXQ9gj8kiU4cbChVQoX5Mjn/IL2ZFB4Jpnjl8Peu8BAr5NIss0MhpmgnbcjuPq3+N0V0xkconmpi8B/g==
+datedreamer@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/datedreamer/-/datedreamer-0.4.1.tgz#69c0c35b8cb1a46a7e937449e2d213ddc437276c"
+  integrity sha512-6K+aAvpGc3M6QALg5DOsxLdNFUcYbJd6BLP4HR3F0mGhCRuz+dsKHv3DSDZBM7MjkoiJMmlMdiwLIxa7oOhjnw==
   dependencies:
     dayjs "^1.11.13"
 
