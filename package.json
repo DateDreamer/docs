@@ -18,6 +18,6 @@
     "yarn-audit-fix": "^10.1.1"
   },
   "dependencies": {
-    "datedreamer": "^0.4.2"
+    "datedreamer": "^0.5.2"
   }
 }

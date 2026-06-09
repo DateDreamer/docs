@@ -31,7 +31,7 @@ export default {
       })
     }
     
-    // Initialize range calendar
+    // Initialize range calendar (datedreamer is loaded globally via script tag)
     this.initializeRangeCalendar()
   },
   beforeUnmount() {
@@ -44,7 +44,7 @@ export default {
     this.destroyRangeCalendar()
   },
   methods: {
-    detectVuePressColorMode() {
+  detectVuePressColorMode() {
       if (typeof window !== 'undefined' && window.document) {
         // Check if VuePress has applied dark mode class to the document
         const isDark = document.documentElement.classList.contains('dark') || 
@@ -57,24 +57,25 @@ export default {
         }
       }
     },
-    initializeRangeCalendar() {
-      if (this.rangeInstance || !this.$refs.range) {
-        return // Already initialized or ref not available
-      }
-      
-      if(typeof window !== 'undefined' && window.document){
-        import('datedreamer').then((datedreamer) => {
-          this.rangeInstance = new datedreamer.range({
-            element: this.$refs.range,
-            theme: "lite-purple", 
-            format: "MM/DD/YYYY", 
-            darkMode: this.isDarkMode
-          })
-        }).catch(err => {
-          console.error('Failed to load datedreamer:', err);
-        });
-      }
-    },
+  
+initializeRangeCalendar() {
+   if (this.rangeInstance || !this.$refs.range) {
+     return // Already initialized or ref not available
+   }
+   
+   const dd = window?.datedreamer;
+   
+   if(dd && dd.range) {
+     this.rangeInstance = new dd.range({
+       element: this.$refs.range,
+       theme: "lite-purple", 
+       format: "MM/DD/YYYY", 
+       darkMode: this.isDarkMode
+     })
+   } else {
+     console.error('datedreamer or range not available')
+   }
+ },
     destroyRangeCalendar() {
       if (this.rangeInstance) {
         // Clean up the range calendar instance if it has a destroy method

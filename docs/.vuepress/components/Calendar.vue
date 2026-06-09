@@ -34,7 +34,7 @@ export default {
       })
     }
     
-    // Initialize calendar
+    // Initialize calendar (datedreamer is loaded globally via script tag)
     this.initializeCalendar()
   },
   beforeUnmount() {
@@ -60,35 +60,32 @@ export default {
         }
       }
     },
-    initializeCalendar() {
-      if (this.calendarInstance || !this.$refs.calendar) {
-        return // Already initialized or ref not available
-      }
-      
-      if(typeof window !== 'undefined' && window.document){
-        import('datedreamer').then((datedreamer) => {
-          if(this.$props.type == "regular"){
-            this.calendarInstance = new datedreamer.calendar({
-              element: this.$refs.calendar, 
-              theme: this.$props.theme, 
-              format: "MM/DD/YYYY", 
-              darkMode: this.isDarkMode
-            })
-          }
-
-          if(this.$props.type == "toggle") {
-            this.calendarInstance = new datedreamer.calendarToggle({
-              element: this.$refs.calendar, 
-              theme: this.$props.theme, 
-              format: "MM/DD/YYYY", 
-              darkMode: this.isDarkMode
-            })
-          }
-        }).catch(err => {
-          console.error('Failed to load datedreamer:', err);
-        });
-      }
-    },
+initializeCalendar() {
+   if (this.calendarInstance || !this.$refs.calendar) {
+     return // Already initialized or ref not available
+   }
+   
+   const dd = window?.datedreamer;
+   
+   let CalClass;
+   
+   if (this.$props.type === "toggle" && dd?.calendarToggle) {
+     CalClass = dd.calendarToggle
+   } else if (dd?.calendar) {
+     CalClass = dd.calendar
+   }
+   
+   if(CalClass) {
+     this.calendarInstance = new CalClass({
+       element: this.$refs.calendar, 
+       theme: this.$props.theme, 
+       format: "MM/DD/YYYY", 
+       darkMode: this.isDarkMode
+     })
+   } else {
+     console.error('No calendar class available in datedreamer')
+   }
+ },
     destroyCalendar() {
       if (this.calendarInstance) {
         // Clean up the calendar instance if it has a destroy method
