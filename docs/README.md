@@ -1,18 +1,21 @@
 ---
 home: true
 # heroImage: /hero.png
-heroText: DateDreamer
-tagline: An easy to use lightweight javascript calendar library.
+heroText: DateDreamer v2.0
+tagline: Modern, accessible calendar library with comprehensive API controls
 actions:
   - text: Get Started →
     link: /Introduction/
     type: primary
+  - text: API Reference
+    link: /../docs/API.md
+    type: secondary
 features:
-- title: Lightweight
-  details: A very small lightweight javascript package with very few dependencies.
-- title: Easy To Override
-  details: Easy to override by injecting your own CSS styles into the shadow DOM.
-- title: Accessible
-  details: Every update is tested with Deque to make sure we meet WCAG AA standards.
+- title: 🎨 Fully Customizable
+  details: Themes, custom styling, and extensive configuration options
+- title: ♿ WCAG 2.1 AA Accessible
+  details: Full keyboard navigation with ARIA attributes and screen reader support
+- title: 🔧 Comprehensive API
+  details: Getter methods, helper navigation, event listeners, and utility functions
 footer: GPL-3.0 Licensed | Copyright © 2023-present DateDreamer
 ---

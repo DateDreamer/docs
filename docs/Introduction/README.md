@@ -37,6 +37,7 @@ A specialized calendar component for selecting date ranges with support for pred
 
 ## Features
 
+### Core Features
 - ✅ **Web Components**: Built with modern Web Components for better compatibility
 - ✅ **TypeScript Support**: Full TypeScript support with type definitions included
 - ✅ **Multiple Themes**: Unstyled and lite-purple themes with custom styling support
@@ -46,9 +47,21 @@ A specialized calendar component for selecting date ranges with support for pred
 - ✅ **Predefined Ranges**: Quick access buttons for common date ranges
 - ✅ **Custom Icons**: Support for custom navigation icons
 - ✅ **Events & Callbacks**: onChange, onRender, and navigation event callbacks
-- ✅ **Accessibility**: WCAG 2.1 AA compliant with full keyboard navigation
-- ✅ **Browser Support**: Compatible with all modern browsers
-- ✅ **Lightweight**: Small bundle size with minimal dependencies
+
+### v2.0 New Features ✨
+- 🔍 **Getter Methods**: Get selected date, displayed month, year, month name, and check selection state
+- 🎮 **Control Methods**: Enable/disable calendar, focus management, clear/reset selection
+- 🗓️ **Helper Navigation**: Navigate to specific months, jump to week boundaries, start/end of month
+- ⌨️ **Enhanced Accessibility**: ARIA attributes on all interactive elements, Escape key support
+- 🎉 **Event System**: AddEventListener support with EVENT_CHANGE, EVENT_NAVIGATE, EVENT_RENDER events
+- 🔧 **Utility Functions**: Date validation, formatting, range checking, week helpers
+
+### Accessibility Features
+- ✅ **WCAG 2.1 AA Compliant**: Every element tested for accessibility standards
+- ✅ **ARIA Attributes**: All interactive elements properly labeled with ARIA
+- ✅ **Keyboard Navigation**: Full keyboard support including Arrow keys and Escape
+- ✅ **Screen Reader Support**: Proper labels and roles for assistive technologies
+- ✅ **Focus Management**: Logical tab order with focus indicators
 
 <br/>
 
@@ -69,6 +82,31 @@ DateDreamer was built to address common pain points with existing calendar libra
 - **Customizable**: Easy to style and configure without fighting the library
 - **Modern**: Built with current web standards (Web Components, TypeScript)
 - **Accessible**: WCAG 2.1 AA compliant out of the box
+
+### What's new in v2.0?
+
+v2.0 brings comprehensive API controls that make it easier to work with DateDreamer:
+
+**Getter Methods**: Retrieve calendar state at any time
+```javascript
+const selectedDate = myCalendar.getSelectedDate();
+const monthName = myCalendar.getDisplayMonthName(); // "January"
+const isTodaySelected = myCalendar.isSelected(today);
+```
+
+**Helper Navigation**: Navigate using common patterns
+```javascript
+myCalendar.goToMonth(2024, 5); // June 2024
+myCalendar.jumpToStartOfMonth(); // First of month
+myCalendar.goToPrevWeek(); // Go back 7 days from selected date
+```
+
+**Control Methods**: Full programmatic control
+```javascript
+myCalendar.disable();    // Prevent user interaction
+myCalendar.focusInput(); // Focus on date input
+myCalendar.clearSelection(); // Reset to today's date
+```
 
 ### Can I use DateDreamer with my framework?
 
@@ -94,4 +132,34 @@ You have several options:
 
 ### Does DateDreamer work with TypeScript?
 
-Yes! DateDreamer is written in TypeScript and includes full type definitions. You'll get autocomplete and type checking out of the box.
+Yes! DateDreamer is written in TypeScript and includes full type definitions:
+- Exported types for all interfaces and options
+- Type-safe event handlers with proper typing
+- IntelliSense support in VSCode and other editors
+```typescript
+import { calendar, Utils } from 'datedreamer';
+
+// Get typed autocomplete
+const selected = myCalendar.getSelectedDate(); // Date | null
+const isValid = Utils.isValidDate(myDate);    // boolean
+```
+
+### Can I listen to calendar events with addEventListener?
+
+Yes! v2.0 adds full event listener support:
+```javascript
+myCalendar.addEventListener(calendar.EVENT_CHANGE, (e) => {
+  console.log('Date changed:', e.detail);
+});
+
+myCalendar.addEventListener(calendar.EVENT_NAVIGATE, (e) => {
+  console.log('Navigated to:', new Date(e.detail.displayedMonthDate));
+});
+```
+
+### What accessibility features are available?
+
+- ARIA labels on all interactive elements (previous/next buttons, day cells)
+- Escape key support to close toggle calendars
+- Full keyboard navigation with logical tab order
+- Screen reader friendly with proper role attributes

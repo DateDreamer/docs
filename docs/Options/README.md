@@ -437,6 +437,207 @@ const myCalendar = new calendar({
 myCalendar.setDisplayedMonthDate(new Date('2024-06-01'));
 ```
 
+---
+
+## v2.0 Control Methods and API
+
+### Getter Methods
+
+#### getSelectedDate(): Date | null
+
+Get the currently selected date.
+
+```javascript
+const selected = myCalendar.getSelectedDate(); // Date object or null
+console.log(selected?.getDate()); // 15
+```
+
+#### getDisplayMonth(): Date
+
+Get the currently displayed month.
+
+```javascript
+const displayedMonth = myCalendar.getDisplayMonth();
+console.log(displayedMonth.getFullYear(), displayedMonth.getMonth()); // 2024, 0
+```
+
+#### getDisplayedYear(): number
+
+Get the year of the displayed month.
+
+```javascript
+const year = myCalendar.getDisplayedYear(); // 2024
+```
+
+#### getDisplayMonthName(): string
+
+Get the full name of the displayed month.
+
+```javascript
+console.log(myCalendar.getDisplayMonthName()); // "January"
+// Returns: "January", "February", etc.
+```
+
+#### isSelected(date: Date): boolean
+
+Check if a date is currently selected.
+
+```javascript
+const today = new Date();
+const isTodaySelected = myCalendar.isSelected(today); // true/false
+```
+
+#### getIsInRangeMode(): boolean
+
+Get whether the calendar is in range mode (range calendars only).
+
+### Control Methods
+
+#### disable(): void
+
+Disable user interaction with the calendar.
+
+```javascript
+myCalendar.disable(); // Prevent clicks, keyboard navigation
+// Later...
+myCalendar.enable(); // Re-enable interactions
+```
+
+#### focusInput(): void
+
+Focus the date input field.
+
+```javascript
+myCalendar.focusInput(); // Focuses date input
+myCalendar.focusFirstDay(); // Focus first day button
+myCalendar.focusLastDay();  // Focus last day button
+```
+
+#### clearSelection(): void
+
+Reset selection to today's date and rebuild calendar.
+
+```javascript
+myCalendar.clearSelection(); // Resets to today's date
+// Also triggers onChange callback with new selection
+```
+
+#### resetSelection(): void
+
+Reset the displayed month to match the selected date.
+
+```javascript
+myCalendar.resetSelection(); // Display matches selected date again
+```
+
+### Helper Navigation Methods
+
+#### goToMonth(year: number, month: number): void
+
+Navigate to a specific month (month is 0-indexed: 0 = January).
+
+```javascript
+// Go to June 2024
+myCalendar.goToMonth(2024, 5); // June is month index 5
+```
+
+#### goToPrevWeek(): void
+
+Navigate back one week from the selected date.
+
+```javascript
+myCalendar.goToPrevWeek(); // Go back 7 days from selected date
+```
+
+#### goToNextWeek(): void
+
+Navigate forward one week from the selected date.
+
+```javascript
+myCalendar.goToNextWeek(); // Go forward 7 days
+```
+
+#### jumpToStartOfMonth(): void
+
+Jump to the first day of the displayed month.
+
+```javascript
+myCalendar.jumpToStartOfMonth(); // Jump to 1st of current month
+```
+
+#### jumpToEndOfMonth(): void
+
+Jump to the last day of the displayed month.
+
+```javascript
+myCalendar.jumpToEndOfMonth(); // Jump to last day of month
+```
+
+#### isTodayVisible(): boolean
+
+Check if today's date is visible in the current calendar view.
+
+```javascript
+const isTodayInView = myCalendar.isTodayVisible(); // true/false
+```
+
+### Event System (v2.0)
+
+Use addEventListener to listen to calendar events:
+
+```javascript
+const myCalendar = new calendar({
+    element: '#calendar'
+});
+
+// Listen for events
+myCalendar.addEventListener(calendar.EVENT_CHANGE, (e) => {
+    console.log('Date changed:', e.detail);
+});
+
+myCalendar.addEventListener(calendar.EVENT_NAVIGATE, (e) => {
+    console.log('Navigated to:', new Date(e.detail.displayedMonthDate));
+});
+
+myCalendar.addEventListener(calendar.EVENT_RENDER, (e) => {
+    console.log('Calendar rendered');
+});
+
+// Remove listeners
+myCalendar.removeEventListener(calendar.EVENT_CHANGE, handler);
+```
+
+### Utility Functions
+
+Import and use utility functions for date operations:
+
+```javascript
+import { Utils } from 'datedreamer';
+
+// Date validation
+Utils.isValidDate(date); // boolean
+
+// Range checking
+Utils.isInRange(start, end, date); // boolean
+
+// Formatting
+Utils.formatDate(date, 'MM/DD/YYYY'); // string
+
+// Date comparison
+Utils.isSameDay(date1, date2); // boolean
+
+// Date manipulation
+const tomorrow = Utils.addDays(date, 1);
+
+// Week helpers
+const weekNum = Utils.getWeekNumber(date);
+const isWeekend = Utils.isWeekend(date);
+const weekday = Utils.getWeekdayName(date); // "Monday"
+const shortWeekday = Utils.getWeekdayShort(date); // "Mon"
+```
+
+## Component Types
+
 ## Component Types
 
 All the above options are available for:
@@ -498,6 +699,11 @@ const myCalendar = new calendar({
         handleDateChange(event.detail);
     }, 300)
 });
+
+// ✅ Use addEventListener for better memory management
+const handler = (e) => console.log(e.detail);
+myCalendar.addEventListener(calendar.EVENT_CHANGE, handler);
+// Can be removed when component unmounts
 ```
 
 #### 4. Memory Management

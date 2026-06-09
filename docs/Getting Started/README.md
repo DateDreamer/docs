@@ -41,9 +41,9 @@ import { calendar, calendarToggle, range } from "datedreamer";
 
 ## Basic Examples
 
-### Calendar
+### Calendar with New API Features
 
-Create a basic calendar that renders in a container element:
+#### Standalone Calendar with Controls
 
 ```html
 <div id="my-calendar"></div>
@@ -58,6 +58,25 @@ const myCalendar = new calendar({
     theme: "lite-purple",
     darkModeAuto: true
 });
+```
+
+**Try the New API:**
+
+```javascript
+// Get current state
+const selectedDate = myCalendar.getSelectedDate();
+const monthName = myCalendar.getDisplayMonthName(); // "January"
+
+// Control the calendar
+myCalendar.disable();      // Prevent user interaction
+myCalendar.enable();       // Re-enable interactions
+myCalendar.focusInput();   // Focus date input field
+myCalendar.clearSelection(); // Reset to today
+
+// Navigate using helper methods
+myCalendar.goToMonth(2024, 5);    // Jump to June 2024
+myCalendar.jumpToStartOfMonth();   // First of current month
+myCalendar.goToPrevWeek();         // Go back 7 days
 ```
 
 ### Calendar Toggle
@@ -78,6 +97,13 @@ const toggleCalendar = new calendarToggle({
     darkModeAuto: true,
     inputLabel: "Select a date",
     inputPlaceholder: "Click to choose date"
+});
+
+// Close on Escape key (built-in accessibility)
+toggleCalendar.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        toggleCalendar.calendarWrapElement?.classList.remove('active');
+    }
 });
 ```
 
@@ -118,6 +144,9 @@ const rangeCalendar = new range({
         }
     ]
 });
+
+// Get range selection
+const isTodayInRange = rangeCalendar.calendar1?.isDateInRange(new Date());
 ```
 
 ## TypeScript Support
@@ -140,10 +169,9 @@ const myCalendar: calendar = new calendar({
 
 ## Working with Events
 
-### onChange Event
+### onChange Event (Option or addEventListener)
 
-Listen for date changes:
-
+**Using option callback:**
 ```javascript
 const myCalendar = new calendar({
     element: '#calendar',
@@ -154,18 +182,27 @@ const myCalendar = new calendar({
 });
 ```
 
-### onRender Event
-
-Execute code when the calendar is rendered:
-
+**Using addEventListener (v2.0):**
 ```javascript
 const myCalendar = new calendar({
-    element: '#calendar',
-    onRender: (event) => {
-        console.log('Calendar rendered:', event.detail.calendar);
-        // Calendar is ready for interaction
-    }
+    element: '#calendar'
 });
+
+// Listen to events after initialization
+myCalendar.addEventListener(calendar.EVENT_CHANGE, (e) => {
+    console.log('Selected date:', e.detail);
+});
+
+myCalendar.addEventListener(calendar.EVENT_NAVIGATE, (e) => {
+    console.log('Navigated to:', new Date(e.detail.displayedMonthDate));
+});
+
+myCalendar.addEventListener(calendar.EVENT_RENDER, (e) => {
+    console.log('Calendar rendered and ready');
+});
+
+// Remove listeners when needed
+myCalendar.removeEventListener(calendar.EVENT_CHANGE, handler);
 ```
 
 ## Next Steps
