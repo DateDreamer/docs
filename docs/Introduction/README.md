@@ -48,9 +48,8 @@ A specialized calendar component for selecting date ranges with support for pred
 - ✅ **Custom Icons**: Support for custom navigation icons
 - ✅ **Events & Callbacks**: onChange, onRender, and navigation event callbacks
 
-### v2.0 New Features ✨
+### current New Features ✨
 
-#### 🔍 Getter Methods (Priority 1)
 Retrieve calendar state at any time:
 ```javascript
 // Get current selection
@@ -64,14 +63,12 @@ const isTodaySelected = myCalendar.isSelected(today); // boolean
 const isInRange = myCalendar.isDateInRange(someDate); // boolean (range mode)
 ```
 
-#### 🎮 Control Methods (Priority 1)
 Full programmatic control:
 - **Enable/disable**: `disable()` / `enable()`
 - **Focus management**: `focusInput()`, `focusFirstDay()`, `focusLastDay()`
 - **Selection clearing**: `clearSelection()` resets to today
 - **Reset selection**: `resetSelection()` matches view to selected date
 
-#### 🗓️ Helper Navigation (Priority 4)
 Navigate using common patterns:
 - Navigate to specific months, jump to week boundaries, start/end of month
 - ⌨️ **Enhanced Accessibility**: ARIA attributes on all interactive elements, Escape key support
@@ -105,11 +102,10 @@ DateDreamer was built to address common pain points with existing calendar libra
 - **Modern**: Built with current web standards (Web Components, TypeScript)
 - **Accessible**: WCAG 2.1 AA compliant out of the box
 
-### What's new in v2.0?
+### What's new in current?
 
-v2.0 brings comprehensive API controls that make it easier to work with DateDreamer:
+current brings comprehensive API controls that make it easier to work with DateDreamer:
 
-**Getter Methods**: Retrieve calendar state at any time (Priority 1 & 3)
 ```javascript
 // Get current selection and view
 const selectedDate = myCalendar.getSelectedDate(); // Date | null
@@ -122,13 +118,11 @@ const isTodaySelected = myCalendar.isSelected(today); // boolean
 const isInRange = myCalendar.isDateInRange(someDate); // boolean (range mode)
 ```
 
-**Control Methods**: Full programmatic control (Priority 1 & 3)
 - **Enable/disable interaction**: `disable()` / `enable()`
 - **Focus management**: `focusInput()`, `focusFirstDay()`, `focusLastDay()`
 - **Selection clearing**: `clearSelection()` - resets to today's date and triggers onChange
 - **Reset selection view**: `resetSelection()` - matches display to selected date
 
-**Helper Navigation**: Navigate using common patterns (Priority 4)
 ```javascript
 myCalendar.goToMonth(2024, 5);    // June 2024
 myCalendar.jumpToStartOfMonth();   // First of current month
@@ -137,7 +131,6 @@ myCalendar.goToPrevWeek();         // Go back 7 days from selected date
 myCalendar.goToNextWeek();         // Go forward 7 days
 ```
 
-**Event System**: Full event listener support (Priority 3)
 ```javascript
 // Listen to calendar events with addEventListener
 myCalendar.addEventListener(calendar.EVENT_CHANGE, (e) => {
@@ -153,7 +146,6 @@ myCalendar.addEventListener(calendar.EVENT_RENDER, (e) => {
 });
 ```
 
-**Utility Functions**: Date manipulation helpers (Priority 3)
 ```javascript
 import { Utils } from 'datedreamer';
 
@@ -204,7 +196,7 @@ const isValid = Utils.isValidDate(myDate);    // boolean
 
 ### Can I listen to calendar events with addEventListener?
 
-Yes! v2.0 adds full event listener support:
+Yes! current adds full event listener support:
 ```javascript
 myCalendar.addEventListener(calendar.EVENT_CHANGE, (e) => {
   console.log('Date changed:', e.detail);

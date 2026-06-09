@@ -439,7 +439,7 @@ myCalendar.setDisplayedMonthDate(new Date('2024-06-01'));
 
 ---
 
-## v2.0 Control Methods and API
+## current Control Methods and API
 
 ### Getter Methods
 
@@ -581,7 +581,7 @@ Check if today's date is visible in the current calendar view.
 const isTodayInView = myCalendar.isTodayVisible(); // true/false
 ```
 
-### Event System (v2.0)
+### Event System (current)
 
 Use addEventListener to listen to calendar events:
 

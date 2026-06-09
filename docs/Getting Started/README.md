@@ -182,7 +182,7 @@ const myCalendar = new calendar({
 });
 ```
 
-**Using addEventListener (v2.0):**
+**Using addEventListener (current):**
 ```javascript
 const myCalendar = new calendar({
     element: '#calendar'
