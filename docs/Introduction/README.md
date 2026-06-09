@@ -49,9 +49,31 @@ A specialized calendar component for selecting date ranges with support for pred
 - ✅ **Events & Callbacks**: onChange, onRender, and navigation event callbacks
 
 ### v2.0 New Features ✨
-- 🔍 **Getter Methods**: Get selected date, displayed month, year, month name, and check selection state
-- 🎮 **Control Methods**: Enable/disable calendar, focus management, clear/reset selection
-- 🗓️ **Helper Navigation**: Navigate to specific months, jump to week boundaries, start/end of month
+
+#### 🔍 Getter Methods (Priority 1)
+Retrieve calendar state at any time:
+```javascript
+// Get current selection
+const selectedDate = myCalendar.getSelectedDate(); // Date | null
+const displayedMonth = myCalendar.getDisplayMonth(); // Date
+const year = myCalendar.getDisplayedYear(); // number (e.g., 2024)
+const monthName = myCalendar.getDisplayMonthName(); // "January"
+
+// Check date state
+const isTodaySelected = myCalendar.isSelected(today); // boolean
+const isInRange = myCalendar.isDateInRange(someDate); // boolean (range mode)
+```
+
+#### 🎮 Control Methods (Priority 1)
+Full programmatic control:
+- **Enable/disable**: `disable()` / `enable()`
+- **Focus management**: `focusInput()`, `focusFirstDay()`, `focusLastDay()`
+- **Selection clearing**: `clearSelection()` resets to today
+- **Reset selection**: `resetSelection()` matches view to selected date
+
+#### 🗓️ Helper Navigation (Priority 4)
+Navigate using common patterns:
+- Navigate to specific months, jump to week boundaries, start/end of month
 - ⌨️ **Enhanced Accessibility**: ARIA attributes on all interactive elements, Escape key support
 - 🎉 **Event System**: AddEventListener support with EVENT_CHANGE, EVENT_NAVIGATE, EVENT_RENDER events
 - 🔧 **Utility Functions**: Date validation, formatting, range checking, week helpers
@@ -87,25 +109,61 @@ DateDreamer was built to address common pain points with existing calendar libra
 
 v2.0 brings comprehensive API controls that make it easier to work with DateDreamer:
 
-**Getter Methods**: Retrieve calendar state at any time
+**Getter Methods**: Retrieve calendar state at any time (Priority 1 & 3)
 ```javascript
-const selectedDate = myCalendar.getSelectedDate();
+// Get current selection and view
+const selectedDate = myCalendar.getSelectedDate(); // Date | null
+const displayedMonth = myCalendar.getDisplayMonth(); // Date object
+const year = myCalendar.getDisplayedYear(); // number (e.g., 2024)
 const monthName = myCalendar.getDisplayMonthName(); // "January"
-const isTodaySelected = myCalendar.isSelected(today);
+
+// Check date state and selection
+const isTodaySelected = myCalendar.isSelected(today); // boolean
+const isInRange = myCalendar.isDateInRange(someDate); // boolean (range mode)
 ```
 
-**Helper Navigation**: Navigate using common patterns
+**Control Methods**: Full programmatic control (Priority 1 & 3)
+- **Enable/disable interaction**: `disable()` / `enable()`
+- **Focus management**: `focusInput()`, `focusFirstDay()`, `focusLastDay()`
+- **Selection clearing**: `clearSelection()` - resets to today's date and triggers onChange
+- **Reset selection view**: `resetSelection()` - matches display to selected date
+
+**Helper Navigation**: Navigate using common patterns (Priority 4)
 ```javascript
-myCalendar.goToMonth(2024, 5); // June 2024
-myCalendar.jumpToStartOfMonth(); // First of month
-myCalendar.goToPrevWeek(); // Go back 7 days from selected date
+myCalendar.goToMonth(2024, 5);    // June 2024
+myCalendar.jumpToStartOfMonth();   // First of current month
+myCalendar.jumpToEndOfMonth();     // Last day of current month
+myCalendar.goToPrevWeek();         // Go back 7 days from selected date
+myCalendar.goToNextWeek();         // Go forward 7 days
 ```
 
-**Control Methods**: Full programmatic control
+**Event System**: Full event listener support (Priority 3)
 ```javascript
-myCalendar.disable();    // Prevent user interaction
-myCalendar.focusInput(); // Focus on date input
-myCalendar.clearSelection(); // Reset to today's date
+// Listen to calendar events with addEventListener
+myCalendar.addEventListener(calendar.EVENT_CHANGE, (e) => {
+    console.log('Date changed:', e.detail);
+});
+
+myCalendar.addEventListener(calendar.EVENT_NAVIGATE, (e) => {
+    console.log('Navigated to:', new Date(e.detail.displayedMonthDate));
+});
+
+myCalendar.addEventListener(calendar.EVENT_RENDER, (e) => {
+    console.log('Calendar rendered');
+});
+```
+
+**Utility Functions**: Date manipulation helpers (Priority 3)
+```javascript
+import { Utils } from 'datedreamer';
+
+Utils.isValidDate(date);          // Validate date
+Utils.isInRange(start, end, date);// Check if in range
+Utils.formatDate(date, fmt);      // Format dates
+Utils.addDays(date, 7);           // Add days to date
+Utils.getWeekNumber(date);        // Get ISO week number
+Utils.isWeekend(date);            // Check weekend
+Utils.getWeekdayName(date);       // Get weekday name
 ```
 
 ### Can I use DateDreamer with my framework?
