@@ -46,6 +46,7 @@ A specialized calendar component for selecting date ranges with support for pred
 - ✅ **Range Selection**: Built-in support for date range selection
 - ✅ **Predefined Ranges**: Quick access buttons for common date ranges
 - ✅ **Custom Icons**: Support for custom navigation icons
+- ✅ **Date Constraints**: `minDate`/`maxDate` bounds and `disabledDates` for restricting selectable dates
 - ✅ **Events & Callbacks**: onChange, onRender, and navigation event callbacks
 
 ### New Features ✨

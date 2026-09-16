@@ -247,6 +247,62 @@ new calendar({
 });
 ```
 
+### minDate
+The earliest date that can be selected, inclusive. Days before this date are disabled, and the previous navigation button is disabled when the displayed month contains no selectable days. String values are parsed using the `format` option.
+
+**Type**: `Date | string`  
+**Default**: `undefined`  
+**Example**: 
+```javascript
+new calendar({
+    element: "#my-calendar",
+    minDate: new Date(2024, 0, 1)
+});
+
+// String value (requires format option)
+new calendar({
+    element: "#my-calendar",
+    minDate: "01/01/2024",
+    format: "MM/DD/YYYY"
+});
+```
+
+### maxDate
+The latest date that can be selected, inclusive. Days after this date are disabled, and the next navigation button is disabled when the displayed month contains no selectable days. String values are parsed using the `format` option.
+
+**Type**: `Date | string`  
+**Default**: `undefined`  
+**Example**: 
+```javascript
+new calendar({
+    element: "#my-calendar",
+    maxDate: new Date(2024, 11, 31)
+});
+```
+
+### disabledDates
+Disables specific dates. Can be an array of Date objects or strings (parsed with the `format` option), or a predicate function that receives a date and returns `true` for dates that should be disabled.
+
+**Type**: `(Date | string)[] | ((date: Date) => boolean)`  
+**Default**: `undefined`  
+**Example**: 
+```javascript
+// Disable specific dates
+new calendar({
+    element: "#my-calendar",
+    format: "MM/DD/YYYY",
+    disabledDates: [new Date(2024, 0, 15), "01/16/2024"]
+});
+
+// Disable all weekends using a predicate
+new calendar({
+    element: "#my-calendar",
+    disabledDates: (date) => date.getDay() === 0 || date.getDay() === 6
+});
+```
+
+Attempting to select a constrained day (by clicking, typing in the input, or via `setDate`/`setDateToToday`) is rejected and an error message is displayed below the calendar.
+
 ### rangeMode
 Whether to enable range selection mode in the calendar.
 
@@ -338,6 +394,8 @@ new calendar({
 ```
 
 ## Range Calendar Specific Options
+
+The date constraint options (`minDate`, `maxDate`, `disabledDates`) also apply to the range component. They are enforced on both inner calendars, and predefined ranges whose start or end date falls outside the constraints are ignored when clicked.
 
 ### predefinedRanges
 Array of predefined range buttons to display for quick date range selection.
@@ -498,6 +556,22 @@ Check if a date falls within the selected range (range mode only; always `false`
 ```javascript
 const d = new Date(2024, 0, 15);
 const inRange = myCalendar.isDateInRange(d); // true/false
+```
+
+#### isDateSelectable(date: Date): boolean
+
+Check whether a date can be selected, taking into account the `minDate`, `maxDate`, and `disabledDates` options.
+
+```javascript
+const selectable = myCalendar.isDateSelectable(new Date(2024, 0, 15)); // true/false
+```
+
+#### isDisabledDate(date: Date): boolean
+
+Check whether a date is disabled via the `disabledDates` option.
+
+```javascript
+const disabled = myCalendar.isDisabledDate(new Date(2024, 0, 15)); // true/false
 ```
 
 ### Control Methods
