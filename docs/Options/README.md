@@ -439,7 +439,7 @@ myCalendar.setDisplayedMonthDate(new Date('2024-06-01'));
 
 ---
 
-## current Control Methods and API
+## Control Methods and API
 
 ### Getter Methods
 
@@ -490,6 +490,15 @@ const isTodaySelected = myCalendar.isSelected(today); // true/false
 #### getIsInRangeMode(): boolean
 
 Get whether the calendar is in range mode (range calendars only).
+
+#### isDateInRange(date: Date): boolean
+
+Check if a date falls within the selected range (range mode only; always `false` for single-date calendars).
+
+```javascript
+const d = new Date(2024, 0, 15);
+const inRange = myCalendar.isDateInRange(d); // true/false
+```
 
 ### Control Methods
 
@@ -581,31 +590,32 @@ Check if today's date is visible in the current calendar view.
 const isTodayInView = myCalendar.isTodayVisible(); // true/false
 ```
 
-### Event System (current)
+### Event System
 
-Use addEventListener to listen to calendar events:
+Events are delivered through option callbacks passed at construction:
 
 ```javascript
 const myCalendar = new calendar({
-    element: '#calendar'
+    element: '#calendar',
+    onChange: (event) => {
+        // event.detail: formatted date string
+        console.log('Date changed:', event.detail);
+    },
+    onRender: (event) => {
+        // Fires after the calendar is rendered
+        console.log('Calendar rendered');
+    },
+    onNextNav: (event) => {
+        // event.detail.displayedMonthDate: Date of the newly displayed month
+        console.log('Navigated forward to:', event.detail.displayedMonthDate);
+    },
+    onPrevNav: (event) => {
+        console.log('Navigated back to:', event.detail.displayedMonthDate);
+    }
 });
-
-// Listen for events
-myCalendar.addEventListener(calendar.EVENT_CHANGE, (e) => {
-    console.log('Date changed:', e.detail);
-});
-
-myCalendar.addEventListener(calendar.EVENT_NAVIGATE, (e) => {
-    console.log('Navigated to:', new Date(e.detail.displayedMonthDate));
-});
-
-myCalendar.addEventListener(calendar.EVENT_RENDER, (e) => {
-    console.log('Calendar rendered');
-});
-
-// Remove listeners
-myCalendar.removeEventListener(calendar.EVENT_CHANGE, handler);
 ```
+
+> **Note:** DateDreamer does not dispatch DOM CustomEvents on the calendar element, so `addEventListener` on the instance will never receive these events. Pass the callbacks in the options object instead.
 
 ### Utility Functions
 
@@ -700,10 +710,6 @@ const myCalendar = new calendar({
     }, 300)
 });
 
-// ✅ Use addEventListener for better memory management
-const handler = (e) => console.log(e.detail);
-myCalendar.addEventListener(calendar.EVENT_CHANGE, handler);
-// Can be removed when component unmounts
 ```
 
 #### 4. Memory Management
@@ -714,10 +720,8 @@ const myCalendar = new calendar({
     theme: "lite-purple"
 });
 
-// Later, when removing the component
-if (myCalendar.destroy) {
-    myCalendar.destroy();
-}
+// Later, when removing the component, remove the calendar element from the DOM
+myCalendar.remove();
 ```
 
 ### Bundle Size Optimization

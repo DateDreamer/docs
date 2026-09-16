@@ -4,7 +4,7 @@
 
 This is a **VuePress documentation site** for the [`datedreamer`](https://npmjs.com/package/datedreamer) JavaScript calendar library. It's **not** the library source code itself.
 
-- **Library**: [datedreamer](https://npmjs.com/package/datedreamer) (v0.5.2, published separately)
+- **Library**: [datedreamer](https://npmjs.com/package/datedreamer) (v0.5.5, published separately)
 - **This repo**: Documentation-only with VuePress v2 + Vite bundler
 
 ## 🚀 Essential Commands

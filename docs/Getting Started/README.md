@@ -14,9 +14,9 @@ npm install datedreamer
 yarn add datedreamer
 ```
 
-#### Installing with CDNJS
+#### Installing with a CDN (unpkg)
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/datedreamer/0.4.2/datedreamer.min.js"></script>
+<script src="https://unpkg.com/datedreamer@0.5.5/dist/datedreamer.js"></script>
 ```
 
 <!-- ::: warning
@@ -99,12 +99,7 @@ const toggleCalendar = new calendarToggle({
     inputPlaceholder: "Click to choose date"
 });
 
-// Close on Escape key (built-in accessibility)
-toggleCalendar.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        toggleCalendar.calendarWrapElement?.classList.remove('active');
-    }
-});
+// The toggle closes itself on Escape key press or outside click (built in)
 ```
 
 ### Range Calendar
@@ -169,41 +164,32 @@ const myCalendar: calendar = new calendar({
 
 ## Working with Events
 
-### onChange Event (Option or addEventListener)
+### Event Callbacks
 
-**Using option callback:**
+Events are delivered through option callbacks passed at construction:
+
 ```javascript
 const myCalendar = new calendar({
     element: '#calendar',
     onChange: (event) => {
+        // event.detail: formatted date string (e.g. "01/15/2024")
         console.log('Selected date:', event.detail);
-        // Handle date change
+    },
+    onRender: (event) => {
+        // Fires after the calendar is rendered
+        console.log('Calendar ready');
+    },
+    onNextNav: (event) => {
+        // event.detail.displayedMonthDate: Date of the newly displayed month
+        console.log('Navigated forward to:', event.detail.displayedMonthDate);
+    },
+    onPrevNav: (event) => {
+        console.log('Navigated back to:', event.detail.displayedMonthDate);
     }
 });
 ```
 
-**Using addEventListener (current):**
-```javascript
-const myCalendar = new calendar({
-    element: '#calendar'
-});
-
-// Listen to events after initialization
-myCalendar.addEventListener(calendar.EVENT_CHANGE, (e) => {
-    console.log('Selected date:', e.detail);
-});
-
-myCalendar.addEventListener(calendar.EVENT_NAVIGATE, (e) => {
-    console.log('Navigated to:', new Date(e.detail.displayedMonthDate));
-});
-
-myCalendar.addEventListener(calendar.EVENT_RENDER, (e) => {
-    console.log('Calendar rendered and ready');
-});
-
-// Remove listeners when needed
-myCalendar.removeEventListener(calendar.EVENT_CHANGE, handler);
-```
+> **Note:** DateDreamer does not dispatch DOM CustomEvents on the calendar element, so `addEventListener` on the instance will never receive these events. Pass the callbacks in the options object instead.
 
 ## Next Steps
 

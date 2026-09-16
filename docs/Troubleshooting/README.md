@@ -44,10 +44,9 @@ import { calendar } from 'datedreamer';
 import { calendar } from 'date-dreamer';
 ```
 
-2. **Install type definitions**: DateDreamer includes its own types, but ensure they're being resolved
+2. **Verify type resolution**: DateDreamer ships its own TypeScript definitions (there is no separate `@types` package). Make sure the library is installed and your `tsconfig.json` uses `"moduleResolution": "node"`:
 ```bash
-# If using older npm versions
-npm install @types/datedreamer
+npm install datedreamer
 ```
 
 ### Date Format Issues
@@ -94,12 +93,18 @@ const myCalendar = new calendar({
 });
 ```
 
-2. **Override theme styles**: Customize existing themes
-```css
-/* In your global CSS */
-.datedreamer__calendar {
-    --dd-primary-color: #your-brand-color;
-}
+2. **Style from inside the shadow DOM**: The calendar renders inside a shadow root, so page-level CSS cannot reach it. Use the `styles` option to inject custom CSS:
+```javascript
+const myCalendar = new calendar({
+    element: "#my-calendar",
+    theme: "lite-purple",
+    styles: `
+        .datedreamer__calendar {
+            border-radius: 8px;
+            font-family: your-font-family;
+        }
+    `
+});
 ```
 
 ### SSR (Server-Side Rendering) Issues
@@ -148,12 +153,13 @@ onChange: () => {
 }
 ```
 
-2. **Verify event names**: Use the correct event names
+2. **Verify event names**: Use the correct callback option names
 ```javascript
-// Available events
+// Available event callbacks (passed as options)
 onChange: (event) => { /* date selection */ },
 onRender: (event) => { /* calendar rendered */ },
-onMonthChange: (event) => { /* month navigation */ }
+onNextNav: (event) => { /* navigated to next month */ },
+onPrevNav: (event) => { /* navigated to previous month */ }
 ```
 
 ## Performance Considerations
@@ -177,11 +183,8 @@ const cal = new calendar({ element: "#calendar1" });
 Clean up calendar instances when removing from DOM:
 
 ```javascript
-// If your calendar instance has a destroy method
-myCalendar.destroy();
-
-// Or remove event listeners manually
-element.removeEventListener('change', handler);
+// Remove the calendar element from the DOM when your component unmounts
+myCalendar.remove();
 ```
 
 ## Getting Help

@@ -1,7 +1,7 @@
 ---
 home: true
 # heroImage: /hero.png
-heroText: DateDreamer current
+heroText: DateDreamer 0.5.5
 tagline: Modern, accessible calendar library with comprehensive API controls
 actions:
   - text: Get Started →

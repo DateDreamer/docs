@@ -48,7 +48,7 @@ A specialized calendar component for selecting date ranges with support for pred
 - ✅ **Custom Icons**: Support for custom navigation icons
 - ✅ **Events & Callbacks**: onChange, onRender, and navigation event callbacks
 
-### current New Features ✨
+### New Features ✨
 
 Retrieve calendar state at any time:
 ```javascript
@@ -72,7 +72,7 @@ Full programmatic control:
 Navigate using common patterns:
 - Navigate to specific months, jump to week boundaries, start/end of month
 - ⌨️ **Enhanced Accessibility**: ARIA attributes on all interactive elements, Escape key support
-- 🎉 **Event System**: AddEventListener support with EVENT_CHANGE, EVENT_NAVIGATE, EVENT_RENDER events
+- 🎉 **Event Callbacks**: `onChange`, `onRender`, `onNextNav`, and `onPrevNav` options fire on selection, render, and navigation
 - 🔧 **Utility Functions**: Date validation, formatting, range checking, week helpers
 
 ### Accessibility Features
@@ -102,9 +102,9 @@ DateDreamer was built to address common pain points with existing calendar libra
 - **Modern**: Built with current web standards (Web Components, TypeScript)
 - **Accessible**: WCAG 2.1 AA compliant out of the box
 
-### What's new in current?
+### What's new in 0.5.5?
 
-current brings comprehensive API controls that make it easier to work with DateDreamer:
+Version 0.5.5 brings comprehensive API controls that make it easier to work with DateDreamer:
 
 ```javascript
 // Get current selection and view
@@ -132,17 +132,13 @@ myCalendar.goToNextWeek();         // Go forward 7 days
 ```
 
 ```javascript
-// Listen to calendar events with addEventListener
-myCalendar.addEventListener(calendar.EVENT_CHANGE, (e) => {
-    console.log('Date changed:', e.detail);
-});
-
-myCalendar.addEventListener(calendar.EVENT_NAVIGATE, (e) => {
-    console.log('Navigated to:', new Date(e.detail.displayedMonthDate));
-});
-
-myCalendar.addEventListener(calendar.EVENT_RENDER, (e) => {
-    console.log('Calendar rendered');
+// React to calendar activity via option callbacks
+const myCalendar = new calendar({
+    element: '#calendar',
+    onChange: (e) => console.log('Date changed:', e.detail),
+    onRender: (e) => console.log('Calendar rendered'),
+    onNextNav: (e) => console.log('Navigated to:', e.detail.displayedMonthDate),
+    onPrevNav: (e) => console.log('Navigated to:', e.detail.displayedMonthDate)
 });
 ```
 
@@ -194,16 +190,18 @@ const selected = myCalendar.getSelectedDate(); // Date | null
 const isValid = Utils.isValidDate(myDate);    // boolean
 ```
 
-### Can I listen to calendar events with addEventListener?
+### How do I listen to calendar events?
 
-Yes! current adds full event listener support:
+Events are delivered through option callbacks (`onChange`, `onRender`, `onNextNav`, `onPrevNav`) rather than DOM event listeners:
 ```javascript
-myCalendar.addEventListener(calendar.EVENT_CHANGE, (e) => {
-  console.log('Date changed:', e.detail);
-});
-
-myCalendar.addEventListener(calendar.EVENT_NAVIGATE, (e) => {
-  console.log('Navigated to:', new Date(e.detail.displayedMonthDate));
+const myCalendar = new calendar({
+    element: '#calendar',
+    onChange: (e) => {
+        console.log('Date changed:', e.detail); // formatted date string
+    },
+    onNextNav: (e) => {
+        console.log('Navigated to:', e.detail.displayedMonthDate);
+    }
 });
 ```
 
