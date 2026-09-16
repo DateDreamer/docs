@@ -1191,10 +1191,10 @@ csstype@^3.1.3:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.3.tgz#d80ff294d114fb0e6ac500fbf85b60137d7eff81"
   integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==
 
-datedreamer@^0.5.5:
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/datedreamer/-/datedreamer-0.5.5.tgz#345f780847710e633a5cd524a606d91aa3e811a4"
-  integrity sha512-9f1a4cDc4N4YBVTEIPfBt6xEakc3vwV6BkdvJKYbnT2L17Rkaf2mwzulzXVWPdyOxBGioIi8c2vhlGT/XKg9cw==
+datedreamer@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/datedreamer/-/datedreamer-0.6.0.tgz#5b7fd0c3681ffe10415e66997979510785bc48c2"
+  integrity sha512-v8UaJ47ngsQhjEKgKw9njCBYeMUzW0KxKyby28NNdXhiSbMJSKodzCvqyC0wI07KTjao57tlc/F+TAo9Ue5xYw==
 
 debug@^4.4.1:
   version "4.4.1"

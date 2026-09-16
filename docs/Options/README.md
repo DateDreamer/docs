@@ -303,6 +303,12 @@ new calendar({
 
 Attempting to select a constrained day (by clicking, typing in the input, or via `setDate`/`setDateToToday`) is rejected and an error message is displayed below the calendar.
 
+**Live example** — a calendar restricted to the current month via `minDate`/`maxDate`, with all weekends disabled by a `disabledDates` predicate. Try clicking a grayed-out day, or navigating to an adjacent month:
+
+<ClientOnly>
+<CalendarConstraints />
+</ClientOnly>
+
 ### rangeMode
 Whether to enable range selection mode in the calendar.
 
