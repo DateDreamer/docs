@@ -284,6 +284,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  color-scheme: light;
 }
 .playground-controls {
   display: grid;
@@ -294,15 +295,15 @@ export default {
   display: flex;
   flex-direction: column;
   font-size: 0.85rem;
-  color: var(--c-text-2);
+  color: var(--vp-c-text-mute);
 }
 .playground-controls select {
   margin-top: 4px;
   padding: 6px 8px;
   border-radius: 6px;
-  border: 1px solid var(--c-border);
-  background: var(--c-bg-soft);
-  color: var(--c-text-1);
+  border: 1px solid var(--vp-c-border);
+  background: var(--vp-c-bg-alt);
+  color: var(--vp-c-text);
   font-size: 0.9rem;
 }
 .playground-checkbox {
@@ -317,9 +318,13 @@ export default {
 .playground-snippet {
   padding: 12px 16px;
   border-radius: 8px;
-  background: var(--c-bg-soft);
-  border: 1px solid var(--c-border);
+  background: var(--vp-c-bg-elv);
+  border: 1px solid var(--vp-c-border);
   font-size: 0.85rem;
   overflow-x: auto;
+}
+
+[data-theme='dark'] .playground {
+  color-scheme: dark;
 }
 </style>
