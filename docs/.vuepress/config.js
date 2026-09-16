@@ -44,6 +44,7 @@ export default defineUserConfig({
         children: [
           '/Introduction/',
           '/Options/',
+          '/Playground/',
         ]
       },
       {

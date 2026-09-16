@@ -2,6 +2,7 @@ import { defineClientConfig } from '@vuepress/client'
 import Calendar from './components/Calendar.vue'
 import Range from './components/Range.vue'
 import CalendarConstraints from './components/CalendarConstraints.vue'
+import Playground from './components/Playground.vue'
 
 export default defineClientConfig({
   enhance({ app }) {
@@ -15,5 +16,6 @@ export default defineClientConfig({
     app.component('Calendar', Calendar)
     app.component('Range', Range)
     app.component('CalendarConstraints', CalendarConstraints)
+    app.component('Playground', Playground)
   },
 }) 
